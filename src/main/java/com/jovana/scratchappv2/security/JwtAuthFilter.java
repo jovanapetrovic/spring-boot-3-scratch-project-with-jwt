@@ -28,7 +28,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Autowired
     private HandlerExceptionResolver handlerExceptionResolver;
     @Autowired
-    private JwtTokenService jwtUtil;
+    private JwtTokenService jwtService;
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -45,14 +45,14 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         try {
             final String jwt = authHeader.substring(7);
-            final String email = jwtUtil.extractUsername(jwt);
+            final String email = jwtService.extractUsername(jwt);
 
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
             if (email != null && authentication == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(email);
 
-                if (jwtUtil.isTokenValid(jwt, userDetails)) {
+                if (jwtService.isTokenValid(jwt, userDetails)) {
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             userDetails,
                             null,
