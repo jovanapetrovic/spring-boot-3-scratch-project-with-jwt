@@ -1,0 +1,33 @@
+package com.jovana.scratchappv2.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Builder;
+import lombok.Data;
+
+/**
+ * Created by jovana on 04.12.2023
+ */
+@Builder
+@Data
+public class RegisterRequest {
+
+    @NotBlank
+    @Size(max = 50)
+    @Email
+    private String email;
+
+    @NotBlank
+    @Size(max = 60)
+    private String password;
+
+    @NotBlank
+    @Size(max = 50)
+    private String firstName;
+
+    @NotBlank
+    @Size(max = 50)
+    private String lastName;
+
+}

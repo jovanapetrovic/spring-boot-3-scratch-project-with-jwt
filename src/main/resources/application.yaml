@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/scratchapp-v2?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password:
+
+## Hibernate properties
+  jpa:
+    hibernate.ddl-auto: update
+    open-in-view: false
+
+security:
+  jwt:
+    secret-key: WzfY9SwPsGkTTCmCNhZGOSLVxKKXr3nZWzfY9SwPsGkTTCmCNhZGOSLVxKKXr3nZ
+    expiration-time: 3600000 # 1h in millisecond
